@@ -1,0 +1,42 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Instruksi Eksperimen (Bagian 2/2)
+{% endblock %}
+
+{% block content %}
+
+    <div class="card" style="text-align:justify">
+        <div class="card-body">
+            Bacalah Instruksi ini secara seksama!
+            <br>
+            <br>
+            Berikut adalah kesebelas lotere <b>yang dapat Anda beli di permainan ini</b>. Perhatikan bahwa tabel
+            tersebut kebanyakan masih kosong. Perhatikan sejenak dan silakan lanjutkan membaca instruksi di bawah.
+            <br>
+            <br>
+            {% include Constants.table %}
+            <br>
+            <br>
+            Pada ronde pertama, Anda <i>belum mengetahui</i> nilai menang-kalah dan peluang menang-kalah dari 10 lotere tersebut.
+            Satu-satunya cara untuk mengetahui informasi mengenai suatu lotere adalah dengan membeli lotere tersebut. Informasi
+            mengenai nilai menang-kalah dan peluang menang-kalah dari lotere yang Anda beli baru akan Anda ketahui di
+            ronde berikutnya dan seterusnya.
+            <br>
+            <br>
+            Dari ke-11 lotere tersebut, Tidak semua lotere bisa Anda pilih dalam setiap ronde. Ada satu lotere (Lotere 1)
+            akan selalu muncul dalam setiap ronde. Selebihnya, lotere 2 hingga 11 memiliki nilai menang-kalah dan
+            peluang menang-kalahnya tersendiri.
+            <br>
+            <br>
+        </div>
+    </div>
+
+
+<br>Tekan tombol 'lanjut' jika Anda sudah memahami instruksi tersebut.
+<br>
+<br>
+<button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
+
+{% endblock %}

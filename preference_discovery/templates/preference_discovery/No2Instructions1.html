@@ -1,0 +1,109 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Instruksi Eksperimen
+{% endblock %}
+
+{% block content %}
+
+Selamat datang dan terima kasih telah bersedia untuk mengikuti eksperimen ini. Mohon baca dengan seksama instruksi ini
+agar Anda dapat memahami apa yang harus Anda lakukan di dalam eksperimen ini. Eksperimen ini memberikan Anda kesempatan
+untuk memperoleh uang tunai yang akan dibayarkan segera setelah Anda menyelesaikan rangkaian eksperimen ini. Besaran uang
+yang akan Anda peroleh bergantung pada apa yang Anda lakukan di dalam eksperimen ini. Oleh karenanya, mohon untuk serius
+dalam menyelesaikannya sesuai dengan preferensi Anda. Uang yang Anda peroleh dalam eksperimen ini akan ditambahkan dengan
+uang kehadiran sebesar {{show_up_fee}}.
+
+<br>
+<br>
+<h4><b>1. Eksperimen</b></h4>
+
+Eksperimen ini meminta Anda untuk mengalokasikan token ke dalam 5 alternatif pilihan yang diberikan secara individu di
+setiap ronde di dalam blok tertentu.
+<br>
+<br>
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-bx42{border-color:#c0c0c0;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-wo29{border-color:#c0c0c0;text-align:left;vertical-align:top}
+</style>
+
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-bx42">&nbsp;&nbsp;&nbsp;<br>Blok, Ronde, dan Token.&nbsp;&nbsp;&nbsp;</th>
+    <th class="tg-wo29">&nbsp;&nbsp;&nbsp;<br>Anda akan bermain dalam 3 blok dimana&nbsp;&nbsp;&nbsp;masing-masing blok akan berisi 10/20 ronde. Di masing-masing ronde,&nbsp;&nbsp;&nbsp;Anda mendapatkan 3/6 token untuk dialokasikan ke dalam pilihan yang&nbsp;&nbsp;&nbsp;tersedia. Terdapat 5 pilihan yang tersedia di masing-masing ronde. Anda harus&nbsp;&nbsp;&nbsp;mengalokasikan semua token tersebut, setidaknya, ke salah satu pilihan yang&nbsp;&nbsp;&nbsp;tersedia untuk memperoleh poin berdasarkan outcome dari&nbsp;&nbsp;&nbsp;alternatif yang Anda alokasikan token. Jika tidak menukarkannya, maka Anda&nbsp;&nbsp;&nbsp;tidak akan mendapatkan poin dari token di ronde tersebut.&nbsp;&nbsp;&nbsp;</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-bx42">&nbsp;&nbsp;&nbsp;<br>Alternatif Pilihan dan Outcome-nya.&nbsp;&nbsp;&nbsp;</td>
+    <td class="tg-wo29">&nbsp;&nbsp;&nbsp;<br>Terdapat 21 alternatif pilihan yang tersedia di&nbsp;&nbsp;&nbsp;masing-masing blok dimana Anda akan menghadapi 5 alternatif pilihan yang&nbsp;&nbsp;&nbsp;berbeda di masing-masing ronde. Kami menamai alternatif tersebut dengan ‘Alternatif&nbsp;&nbsp;&nbsp;1’ sampai ‘Alternatif 21’. Ke-21 alternatif pilihan tersebut&nbsp;&nbsp;&nbsp;berisi: 20 alternatif dengan 2 outcome (probabilistik), dan 1&nbsp;&nbsp;&nbsp;alternatif dengan 1 outcome (pasti). Pada Blok 1, kelima&nbsp;&nbsp;&nbsp;alternatif di setiap ronde akan diambil secara acak dari 21 alternatif yang&nbsp;&nbsp;&nbsp;ada melalui distribusi seragam. Pada Blok 2 dan Blok 3, empat&nbsp;&nbsp;&nbsp;alternatif probabilistik akan diambil secara acak dari 20 alternatif&nbsp;&nbsp;&nbsp;probabilistik yang ada melalui distribusi seragam ditambah satu alternatif&nbsp;&nbsp;&nbsp;pasti. Masing-masing outcome pada alternatif probabilistik memiliki&nbsp;&nbsp;&nbsp;probabilitas untuk menjadi poin bagi Anda ketika memilihnya.&nbsp;&nbsp;&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="tg-bx42">&nbsp;&nbsp;&nbsp;<br>Ketika Anda mengalokasikan token pada sebuah&nbsp;&nbsp;&nbsp;alternatif.&nbsp;&nbsp;&nbsp;</td>
+    <td class="tg-wo29">&nbsp;&nbsp;&nbsp;<br>Jika Anda mengalokasikan token pada alternatif pasti&nbsp;&nbsp;&nbsp;(yang berisi 1 outcome) maka Anda akan mendapatkan poin yang tertulis&nbsp;&nbsp;&nbsp;pada outcome tersebut. Jika Anda mengalokasikan token pada alternatif&nbsp;&nbsp;&nbsp;probabilistik (yang berisi 2 outcome) maka poin yang Anda dapatkan bergantung&nbsp;&nbsp;&nbsp;dari acakan yang dilakukan oleh sistem mengacu pada probabilitas di&nbsp;&nbsp;&nbsp;alternatif tersebut. Outcome yang muncul akan menjadi poin yang Anda&nbsp;&nbsp;&nbsp;peroleh pada ronde tersebut. Anda akan mengetahui outcome yang menjadi&nbsp;&nbsp;&nbsp;poin Anda tersebut (dan juga poin dari alternatif pasti jika Anda juga&nbsp;&nbsp;&nbsp;memilihnya) setelah satu ronde tersebut selesai. Poin yang Anda dapatkan merupakan&nbsp;&nbsp;&nbsp;perkalian dari token yang Anda alokasikan dan outcome yang Anda&nbsp;&nbsp;&nbsp;peroleh.&nbsp;&nbsp;&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="tg-bx42">&nbsp;&nbsp;&nbsp;<br>Apa yang terjadi pada ronde berikutnya?&nbsp;&nbsp;&nbsp;</td>
+    <td class="tg-wo29">&nbsp;&nbsp;&nbsp;<br>Ronde berikutnya tetap akan memberikan Anda 5&nbsp;&nbsp;&nbsp;alternatif pilihan sesuai dengan aturan pengacakan pada blok yang Anda&nbsp;&nbsp;&nbsp;mainkan. Namun alternatif probabilistik (2 outcome) yang telah Anda&nbsp;&nbsp;&nbsp;pilih akan menjadi alternatif pasti (1 outcome) karena Anda telah&nbsp;&nbsp;&nbsp;mengetahui outcome yang muncul.&nbsp;&nbsp;&nbsp;</td>
+  </tr>
+</tbody>
+</table>
+
+<br>
+<br>
+<h4><b>2. Contoh Sebuah Ronde</b></h4>
+
+Anda akan menghadapi layar sebagai berikut di sebuah ronde yang Anda mainkan—asumsikan Alternatif 1 sampai dengan
+Alternatif 5 muncul dari hasil acakan di ronde ini.
+
+<br>
+<br>
+<img src='{% static instrument %}' alt='Snow' style='width:80%' border="5"/>
+<br>
+<br>
+Di sini Anda memiliki {{endowment}} token yang bebas Anda alokasikan untuk 5 alternatif (1 alternatif pasti dan 4 alternatif probabilistik)
+dengan memasukkan angka pada kotak token di masing-masing alternatif. Sebagai contoh Anda mengalokasikan 2 token pada
+Alternatif 1 dan 1 token pada Alternatif 2. Anda harus menekan tombol ‘KONFIRMASI’ (yang akan aktif setelah 15 detik dari
+pertama kali Anda masuk ke ronde ini) untuk mengeksekusi alokasi Anda. Poin yang Anda dapatkan dari Ronde 1 ini—berdasarkan
+acakan sistem—diinformasikan di halaman berikutnya.
+<br>
+<br>
+<img src='{% static result %}' alt='Snow' style='width:80%' border="5"/>
+<br>
+<br>
+Total poin yang Anda peroleh dari Ronde 1 ini adalah 32 poin berdasarkan alokasi Anda dan hasil acakan sistem. Ingat,
+token yang tidak Anda alokasikan tidak akan menjadi poin bagi Anda di ronde terkait! Anda juga tidak dapat kembali ke
+ronde ini jika Anda telah mengeksekusi alokasi Anda! Tekan tombol ‘LANJUT’ untuk menuju ke ronde selanjutnya.
+Alternatif probabilistik yang telah Anda pilih akan menjadi alternatif pasti di ronde selanjutnya jika alternatif tersebut
+muncul dari hasil acakan.
+<br>
+<br>
+<h4><b>3. Durasi Eksperimen</b></h4>
+<br>
+Kami mengestimasi penyelesaian rangkaian eksperimen ini selama lebih-kurang 90 menit. Namun hal ini tergantung dari
+bagaimana Anda memahami instruksi dan waktu yang Anda butuhkan untuk memutuskan alokasi Anda. Kami harap Anda menyelesaikan
+eksperimen ini secara mandiri karena akan menentukan pembayaran yang Anda peroleh! Anda dapat menghubungi kami melalui
+WhatsApp di nomor +6281288106065 jika ada hal-hal yang perlu Anda tanyakan.
+<br>
+<br>
+<h4><b>4. Pembayaran</b></h4>
+<br>
+Satu ronde dari semua blok akan diacak melalui distribusi seragam untuk menjadi basis pembayaran Anda. Poin yang Anda
+peroleh dari ronde tersebut dikalikan dengan Rp1.000. Pembayaran ini akan ditambah dengan uang kehadiran Rp {{show_up_fee}}. Anda
+dapat memilih salah satu dari opsi transfer uang untuk pembayaran Anda: i) OVO Pay, ii) GoPay, iii) Shopee Pay, iv)
+transfer ke Bank Mandiri, v) transfer ke Bank BNI. Anda akan mendapatkan pembayaran segera setelah Anda menyelesaikan
+eksperimen.
+
+<br>Tekan tombol 'lanjut' jika Anda sudah memahami instruksi di atas.
+<br>
+<br>
+<button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
+
+{% endblock %}

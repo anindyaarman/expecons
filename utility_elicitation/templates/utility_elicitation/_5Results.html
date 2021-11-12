@@ -1,0 +1,75 @@
+{% extends "global/Base.html" %}
+{% load otree static %}
+
+{% block title %}
+    Hasil
+
+{% endblock %}
+
+{% block content %}
+
+    Metode yang dipilih: <i>{% if elic_type == 'PE' %}Probability Equivalent{% elif elic_type == 'CE' %}Certainty Equivalent
+    {% else %}Trade-off method{% endif%}</i>
+
+    <div class="row">
+      <div class="column" style="background-color:#ffffff;">
+        <div id="chart_div" style="width: 450px; height: 450px;"></div>
+      </div>
+      <div class="column" style="background-color:#ffffff;">
+        <div id="chart_div2" style="width: 450px; height: 450px;"></div>
+      </div>
+    </div><br>
+
+    {% if elic_type == 'PE' %}Asumsi <i>uniqueness</i>: u({{prospect_min}}) = 0, u({{prospect_max}}) = 1<br>
+    {% elif elic_type == 'CE' %}Asumsi <i>uniqueness</i>: u(0) = 0, u({{CE_max}}) = 1<br>
+    {% else %}Asumsi <i>uniqueness</i>: u({{base}}) = 0, u({{TO_max}}) = 1<br>
+    {% endif%}
+
+
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable({{data|json}}, false);
+
+        var options = {
+          title: 'Utility of each value (Polynomial fit, 3 degrees)',
+          vAxis: {title: 'u(Value)', viewWindowMode:'maximized'},
+          hAxis: {title: 'Value', viewWindowMode:'maximized'},
+          legend: 'none',
+          trendlines: {
+              0: {
+                type: 'polynomial',
+                degree: 3,
+                visibleInLegend: true,
+              }
+            }
+        };
+
+        var options2 = {
+          title: 'Utility of each value (Polynomial fit, 2 degrees)',
+          hAxis: {title: 'Value', viewWindowMode:'maximized'},
+          vAxis: {title: 'u(Value)', viewWindowMode:'maximized'},
+          legend: 'none',
+          trendlines: {
+              0: {
+                type: 'polynomial',
+                degree: 2,
+                visibleInLegend: true,
+              }
+            }
+        };
+
+        var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+        var chart2 = new google.visualization.ScatterChart(document.getElementById('chart_div2'));
+        chart2.draw(data, options2);
+      }
+    </script>
+{% endblock %}
+

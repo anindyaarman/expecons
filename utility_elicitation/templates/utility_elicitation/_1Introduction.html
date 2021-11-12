@@ -1,0 +1,26 @@
+{% extends "global/Base.html" %}
+{% load otree static %}
+
+{% block title %}
+    Selamat Datang!
+{% endblock %}
+
+{% block content %}
+
+    Selamat datang pada demonstrasi metode PE dan CE dalam estimasi fungsi utilitas.
+    <br>
+    <br>
+
+
+    <form>
+    Metode apa yang ingin Anda demonstrasikan?<br>
+    <br>
+    <input type="radio" name="choosePECETO" value="PE"><i> Probability Equivalent</i><br>
+    <input type="radio" name="choosePECETO" value="CE"><i> Certainty Equivalent</i><br>
+    <input type="radio" name="choosePECETO" value="TO"><i> Trade-off Method</i><br>
+    </form>
+    <br>
+    <br>
+    {% next_button %}
+
+{% endblock %}

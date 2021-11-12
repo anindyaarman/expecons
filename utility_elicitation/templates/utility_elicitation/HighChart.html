@@ -1,0 +1,32 @@
+{% load otree %}
+
+<div id="highcharts-container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<script src="//code.highcharts.com/highcharts.js"></script>
+
+<script>
+    $(function () {
+        Highcharts.chart('highcharts-container', {
+            chart: {
+            type: 'scatter',
+            zoomType: 'xy'
+            },
+            title: {
+                text: 'Results'
+            },
+            xAxis: {
+                title: {
+                    enabled: true,
+                    text: 'money'
+                },
+            },
+            yAxis: {
+                title: {
+                    enabled: true,
+                    text: 'u(money)'
+                }
+            },
+            series: {{ highcharts_series|json }}
+        });
+    });
+</script>

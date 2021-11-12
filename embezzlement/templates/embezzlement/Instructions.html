@@ -1,0 +1,31 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Video Instruksi Bagian A
+{% endblock %}
+
+{% block content %}
+
+    {% if player.treatmentgroup == '0' %}
+    <video width="600" autoplay="autoplay">
+        <source src="{% static "embezzlement/InstructionsE0.mp4" %}" type="video/mp4">
+    </video>
+    {% elif player.treatmentgroup == '1' %}
+    <video width="600" autoplay="autoplay">
+        <source src="{% static "embezzlement/InstructionsE1.mp4" %}" type="video/mp4">
+    </video>
+    {% elif player.treatmentgroup == '2' %}
+    <video width="600" autoplay="autoplay">
+        <source src="{% static "embezzlement/InstructionsE2.mp4" %}" type="video/mp4">
+    </video>
+    {% endif %}
+    <br>
+    <br>
+    Jika Anda sudah merasa benar-benar paham atas instruksi tersebut, silakan klik 'lanjut'. Jika tidak, silakan bertanya
+    kepada eksperimenter.
+    <br>
+    <br>
+    <button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
+
+{% endblock %}

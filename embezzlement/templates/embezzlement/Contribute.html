@@ -1,0 +1,37 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Tahap Sumbangan - Game {{ player.gametype }} {% if player.gametype == 'A2' %}- Ronde {{ round }} {% else %}{% endif %}
+{% endblock %}
+
+{% block content %}
+
+    {% if player.gametype == "Training" %}
+        <div class="alert alert-info">
+            <strong>Informasi:</strong> Ronde ini adalah <b>ronde latihan</b>. Hasil dari ronde ini <i>tidak</i> akan mempengaruhi pembayaran
+            anda. Silakan gunakan waktu ini untuk mempelajari permainan secara seksama.
+        </div>
+    {% elif player.gametype == "A1" %}
+        <div class="alert alert-danger">
+            <font size="4"><b>Informasi: Game {{ player.gametype }}</b>, 25% dari poin akhir Anda</font>
+        </div>
+    {% elif player.gametype == "A2" %}
+        <div class="alert alert-warning">
+            <font size="4"><b>Informasi: Game {{ player.gametype }}</b>, akan diacak untuk 50% dari poin akhir Anda</font>
+        </div>
+    {% endif %}
+
+    Anda memiliki poin awal sebesar <b>{{ player.endowment }} poin</b>.
+
+    <br>Total sumbangan akan dikalikan pengganda sebesar <b>{{ subsession.multiplier }}</b>.
+
+    <div align="center">{% formfield player.choice %}</div>
+
+    <br>Tekan tombol 'lanjut' jika Anda telah yakin pada pilihan Anda.
+    <br>
+    <br>
+    <button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
+
+
+{% endblock %}

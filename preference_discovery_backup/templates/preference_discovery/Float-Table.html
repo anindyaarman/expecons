@@ -1,0 +1,112 @@
+{% load otree %}
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
+.tg td{padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+.tg th{font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+</style>
+<div class="card" style="text-align:center">
+    <div class="card-body">
+        <center>
+<table class="tg">
+  <tr>
+    <th class="tg-baqh">﻿Nama Lotere</th>
+    <th class="tg-baqh">Diketahui?</th>
+    <th class="tg-baqh">Poin Jika Menang</th>
+    <th class="tg-baqh">Peluang Menang</th>
+    <th class="tg-baqh">Poin Jika Kalah</th>
+    <th class="tg-baqh">Peluang Kalah</th>
+  </tr>
+  <tr>
+    <td class="tg-baqh">Lotere 1</td>
+    <td class="tg-baqh">{% if show_g1 == 1 %}Diketahui{% else %}Belum Diketahui{% endif %}</td>
+    <td class="tg-baqh">{% if show_g1 == 1 %}{{gain_A_g1}}{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g1 == 1 %}{{prob_A_g1}}%{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g1 == 1 %}{{gain_B_g1}}{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g1 == 1 %}{{prob_B_g1}}%{% else %}{% endif %}</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">Lotere 2</td>
+    <td class="tg-baqh">{% if show_g2 == 1 %}Diketahui{% else %}Belum Diketahui{% endif %}</td>
+    <td class="tg-baqh">{% if show_g2 == 1 %}{{gain_A_g2}}{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g2 == 1 %}{{prob_A_g2}}%{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g2 == 1 %}{{gain_B_g2}}{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g2 == 1 %}{{prob_B_g2}}%{% else %}{% endif %}</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">Lotere 3</td>
+    <td class="tg-baqh">{% if show_g3 == 1 %}Diketahui{% else %}Belum Diketahui{% endif %}</td>
+    <td class="tg-baqh">{% if show_g3 == 1 %}{{gain_A_g3}}{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g3 == 1 %}{{prob_A_g3}}%{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g3 == 1 %}{{gain_B_g3}}{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g3 == 1 %}{{prob_B_g3}}%{% else %}{% endif %}</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">Lotere 4</td>
+    <td class="tg-baqh">{% if show_g4 == 1 %}Diketahui{% else %}Belum Diketahui{% endif %}</td>
+    <td class="tg-baqh">{% if show_g4 == 1 %}{{gain_A_g4}}{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g4 == 1 %}{{prob_A_g4}}%{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g4 == 1 %}{{gain_B_g4}}{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g4 == 1 %}{{prob_B_g4}}%{% else %}{% endif %}</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">Lotere 5</td>
+    <td class="tg-baqh">{% if show_g5 == 1 %}Diketahui{% else %}Belum Diketahui{% endif %}</td>
+    <td class="tg-baqh">{% if show_g5 == 1 %}{{gain_A_g5}}{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g5 == 1 %}{{prob_A_g5}}%{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g5 == 1 %}{{gain_B_g5}}{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g5 == 1 %}{{prob_B_g5}}%{% else %}{% endif %}</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">Lotere 6</td>
+    <td class="tg-baqh">{% if show_g6 == 1 %}Diketahui{% else %}Belum Diketahui{% endif %}</td>
+    <td class="tg-baqh">{% if show_g6 == 1 %}{{gain_A_g6}}{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g6 == 1 %}{{prob_A_g6}}%{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g6 == 1 %}{{gain_B_g6}}{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g6 == 1 %}{{prob_B_g6}}%{% else %}{% endif %}</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">Lotere 7</td>
+    <td class="tg-baqh">{% if show_g7 == 1 %}Diketahui{% else %}Belum Diketahui{% endif %}</td>
+    <td class="tg-baqh">{% if show_g7 == 1 %}{{gain_A_g7}}{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g7 == 1 %}{{prob_A_g7}}%{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g7 == 1 %}{{gain_B_g7}}{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g7 == 1 %}{{prob_B_g7}}%{% else %}{% endif %}</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">Lotere 8</td>
+    <td class="tg-baqh">{% if show_g8 == 1 %}Diketahui{% else %}Belum Diketahui{% endif %}</td>
+    <td class="tg-baqh">{% if show_g8 == 1 %}{{gain_A_g8}}{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g8 == 1 %}{{prob_A_g8}}%{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g8 == 1 %}{{gain_B_g8}}{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g8 == 1 %}{{prob_B_g8}}%{% else %}{% endif %}</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">Lotere 9</td>
+    <td class="tg-baqh">{% if show_g9 == 1 %}Diketahui{% else %}Belum Diketahui{% endif %}</td>
+    <td class="tg-baqh">{% if show_g9 == 1 %}{{gain_A_g9}}{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g9 == 1 %}{{prob_A_g9}}%{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g9 == 1 %}{{gain_B_g9}}{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g9 == 1 %}{{prob_B_g9}}%{% else %}{% endif %}</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">Lotere 10</td>
+    <td class="tg-baqh">{% if show_g10 == 1 %}Diketahui{% else %}Belum Diketahui{% endif %}</td>
+    <td class="tg-baqh">{% if show_g10 == 1 %}{{gain_A_g10}}{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g10 == 1 %}{{prob_A_g10}}%{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g10 == 1 %}{{gain_B_g10}}{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g10 == 1 %}{{prob_B_g10}}%{% else %}{% endif %}</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">Lotere 11</td>
+    <td class="tg-baqh">{% if show_g11 == 1 %}Diketahui{% else %}Belum Diketahui{% endif %}</td>
+    <td class="tg-baqh">{% if show_g11 == 1 %}{{gain_A_g11}}{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g11 == 1 %}{{prob_A_g11}}%{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g11 == 1 %}{{gain_B_g11}}{% else %}{% endif %}</td>
+    <td class="tg-baqh">{% if show_g11 == 1 %}{{prob_B_g11}}%{% else %}{% endif %}</td>
+  </tr>
+</table>
+        </center>
+    </div>
+</div>
+

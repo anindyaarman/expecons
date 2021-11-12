@@ -1,0 +1,27 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Kuisioner
+{% endblock %}
+
+{% block content %}
+
+    Terima kasih telah berpartisipasi pada eksperimen ini. Kami mohon kesediaannya untuk mengisi data berikut ini. Anda
+akan mendapatkan informasi mengenai poin yang Anda kumpulkan pada halaman berikutnya seusai mengisi formulir berikut.
+    <br>
+    <br>
+    Peneliti menjamin kerahasiaan seluruh data pribadi Anda. Seluruh data yang dikumpulkan hanya digunakan untuk tujuan
+studi semata.
+    <br>
+    <br>
+    {% formfields %}
+    <br>
+    <br>
+    Tekan tombol 'Lanjut' untuk masuk ke halaman berikutnya.
+    <br>
+    <br>
+    <button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
+{% endblock %}
+
+

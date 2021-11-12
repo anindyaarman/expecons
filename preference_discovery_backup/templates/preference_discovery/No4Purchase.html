@@ -1,0 +1,24 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Ronde Ke-{{ round }} dari {{ playable_rounds }}
+{% endblock %}
+
+{% block content %}
+
+    Anda memiliki koin sebanyak {{ endowment }}. Silakan tukarkan dengan lotere yang Anda inginkan. Anda tidak harus
+    menghabiskan semua koin, namun koin yang tersisa tersebut akan hangus.
+    <br>
+    <br>
+    {% include Constants.table %}
+
+    {% formfields %}
+    <br>
+    <br>
+    <br>Tekan tombol 'Tukar' jika sudah yakin dengan pilihan Anda.
+    <br>
+    <br>
+    <button class="otree-btn-next btn btn-primary next-button otree-next-button">Tukar</button>
+
+{% endblock %}

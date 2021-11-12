@@ -1,0 +1,98 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Instruksi Eksperimen (Bagian 1/2)
+{% endblock %}
+
+{% block content %}
+
+    <div class="card" style="text-align:justify">
+        <div class="card-body">
+            Bacalah Instruksi ini secara seksama!
+            <br>
+            <br>
+            Dalam eksperimen ini, Anda akan memainkan sejumlah {{playable_rounds}} ronde. Pada setiap ronde, Anda akan
+            mendapatkan sejumlah <b>{{endowment}} koin</b>. Setiap koin bisa Anda tukarkan dengan satu lotere, dimana
+            terdapat total 11 lotere yang bisa Anda pilih. Anda <i>tidak harus</i> mengalokasikan semua koin
+            pada lotere yang sama. Mungkin saja Anda mengalokasikan 2 untuk lotere A, 1 untuk lotere B, dan sebagainya.
+            <br>
+            <br>
+            Setiap lotere akan memiliki:
+            <ul>
+                <li>Peluang menang,</li>
+                <li>Pendapatan jika menang,</li>
+                <li>Peluang kalah,</li>
+                <li>Pendapatan jika kalah</li>
+            </ul>
+            Semua pendapatan (menang/kalah) bernilai positif atau nol, artinya Anda tidak mungkin kehilangan poin
+            meskipun kalah dalam suatu lotere. Yang membedakan adalah besarannya poinnya. Total poin Anda dalam satu
+            ronde adalah akumulasi dari hasil lotere yang Anda pilih dengan koin Anda.
+            <br>
+            <br>
+            Perhatikan ilustrasi berikut. Misalkan: Anda punya 3 koin yang Anda alokasikan 2 untuk lotere A dan 1 untuk lotere B.
+            Lotere A dan B memiliki peluang sebagai berikut. Setelah Anda menentukan pilihan, komputer akan mengacak pilihan
+            tersebut sesuai dengna peluang masing-masing lotere. Anda akan mendapatkan informasi dari hasil undian setiap
+            lotere yang Anda ambil.
+            <br>
+            <br>
+            Ternyata, Anda menang di lotere A dan kalah di lotere B. Total poin Anda pada ronde tersebut akan menjadi
+            sebesar 225, seperti ini:
+            <br>
+            <br>
+            <center>
+                <style type="text/css">
+            .tg  {border-collapse:collapse;border-spacing:0;}
+            .tg td{font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+            .tg th{font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+            .tg .tg-baqh{text-align:center;vertical-align:top}
+            .tg .tg-6qw1{background-color:#c0c0c0;text-align:center;vertical-align:top}
+            .tg .tg-y6fn{background-color:#c0c0c0;text-align:left;vertical-align:top}
+            .tg .tg-0lax{text-align:left;vertical-align:top}
+            </style>
+                <table class="tg">
+              <tr>
+                <th class="tg-6qw1">﻿Jenis Lotere</th>
+                <th class="tg-6qw1">Koin</th>
+                <th class="tg-6qw1">Jika Menang</th>
+                <th class="tg-6qw1">Peluang Menang <br><span style="font-style:italic">(dalam persen%)</span></th>
+                <th class="tg-6qw1">Jika Kalah</th>
+                <th class="tg-6qw1">Peluang Kalah <br><span style="font-style:italic">(dalam persen%)</span></th>
+                <th class="tg-6qw1">Hasil</th>
+                <th class="tg-y6fn">Total (Koin x Hasil)</th>
+              </tr>
+              <tr>
+                <td class="tg-baqh">Lotere A</td>
+                <td class="tg-baqh">2</td>
+                <td class="tg-baqh">100</td>
+                <td class="tg-baqh">50</td>
+                <td class="tg-baqh">20</td>
+                <td class="tg-baqh">50</td>
+                <td class="tg-baqh">Menang</td>
+                <td class="tg-0lax">2 x 100 = 200</td>
+              </tr>
+              <tr>
+                <td class="tg-baqh">Lotere B</td>
+                <td class="tg-baqh">1</td>
+                <td class="tg-baqh">70</td>
+                <td class="tg-baqh">75</td>
+                <td class="tg-baqh">50</td>
+                <td class="tg-baqh">25</td>
+                <td class="tg-baqh">Kalah</td>
+                <td class="tg-0lax">1 x 25 = 25</td>
+              </tr>
+              <tr>
+                <td class="tg-baqh" colspan="7">Total Perolehan Poin Ronde Ini</td>
+                <td class="tg-0lax">225</td>
+              </tr>
+            </table>
+            </center>
+        </div>
+    </div>
+    <br>
+<br>Tekan tombol 'lanjut' jika Anda sudah memahami instruksi di atas.
+<br>
+<br>
+<button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
+
+{% endblock %}

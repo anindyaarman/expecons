@@ -1,0 +1,88 @@
+{% extends "global/Base.html" %}
+{% load otree static %}
+
+{% block title %}
+    <i>Certainty Equivalent Method</i> - Ronde {{ round }}
+{% endblock %}
+
+{% block content %}
+
+Silakan mengklik opsi-opsi di bawah dan sesuaikan dengan preferensi Anda. <br>
+
+<table>
+  <tr style="background:#3a3a3a;color:#ffffff"><td>No</td><td><b>Option A</b> </td><td><b>A</b></td><td><b>B</b></td><td><b>Option B</b></td></tr>
+  {% for i in E_range %}
+    <tr><td>{{i.0}}</td>
+        <td>Uang pasti sebesar <b>{{i.1}}</b></td>
+    <td><input type="radio" id="{{i.0}}" value="1" name="CEchoice{{i.0}}" onClick="left_click(this.id)" required></td>
+    <td><input type="radio" id="{{i.0}}" value="2" name="CEchoice{{i.0}}" onClick="right_click(this.id)" required></td>
+        <td><font color="blue">{{ CE_P }}%</font> peluang mendapatkan <b>{{ CE_P_pts }}</b>,
+            <font color="red">{{ CE_cP }}%</font> peluang mendapatkan <b>{{ CE_cP_pts }}</b></td></tr>
+  {% endfor %}
+</table>
+<br><br>
+
+    <input type="hidden" name="CESwitchingPoint" id="switch" value="">
+    {% next_button %}
+
+    {{ form.errors }}
+
+{% endblock %}
+
+{% block styles %}
+<style type="text/css">
+table {
+    text-align: center;
+    border: 1 px solid;
+    padding: 5px;
+}
+th, td {
+    border: 1px solid ;
+    padding: 5px;
+}
+</style>
+{% endblock%}
+
+{% block scripts %}
+    <script type="text/javascript">
+    function left_click(clicked_id){
+        var varId = parseInt(clicked_id, 10);
+        var switchpoint = document.getElementById('switch');
+        i = 0;
+        while(i < varId){
+            var but = [':radio[id=',i,'][value=1]'];
+            var but = but.join("");
+            $(but).prop('checked',true);
+            i++;
+        }
+        i = varId;
+        while(i < 21){
+            var but = [':radio[id=',i,'][value=2]'];
+            var but = but.join("");
+            $(but).prop('checked',true);
+            i++;
+        }
+        switchpoint.value = varId + "A";
+    }
+    function right_click(clicked_id){
+        var varId = parseInt(clicked_id, 10);
+        var switchpoint = document.getElementById('switch');
+        i = 0;
+        j = varId++;
+        while(i < j){
+            var but = [':radio[id=',i,'][value=2]'];
+            var but = but.join("");
+            $(but).prop('checked',true);
+            i++;
+        }
+        i = varId++;
+        while(i < 21){
+            var but = [':radio[id=',i,'][value=1]'];
+            var but = but.join("");
+            $(but).prop('checked',true);
+            i++;
+        }
+        switchpoint.value = (varId - 1) + "B";
+    }
+    </script>
+{% endblock %}

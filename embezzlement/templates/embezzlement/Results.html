@@ -1,0 +1,95 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Hasil - Game {{ player.gametype }} {% if player.gametype == 'A2' %}- Ronde {{ round }} {% else %}{% endif %}
+{% endblock %}
+
+{% block content %}
+
+    {% if player.gametype == "Training" %}
+        <div class="alert alert-info">
+            <strong>Informasi:</strong> Ronde ini adalah <b>ronde latihan</b>. Hasil dari ronde ini <i>tidak</i> akan mempengaruhi pembayaran
+            anda. Silakan gunakan waktu ini untuk mempelajari permainan secara seksama.
+        </div>
+    {% elif player.gametype == "A1" %}
+        <div class="alert alert-danger">
+            <font size="4"><b>Informasi: Game {{ player.gametype }}</b>, 25% dari poin akhir Anda</font>
+        </div>
+    {% elif player.gametype == "A2" %}
+        <div class="alert alert-warning">
+            <font size="4"><b>Informasi: Game {{ player.gametype }}</b>, akan diacak untuk 50% dari poin akhir Anda</font>
+        </div>
+    {% endif %}
+
+    <p>
+        {% if player.treatmentgroup == '0' %}
+            {% if group.amt_embezzled_g > 0 %}
+            {% else %}
+            {% endif %}
+
+        {% elif player.treatmentgroup == '1' %}
+            {% if group.amt_embezzled_g > 0 %}
+                {% if group.amt_embezzled_g > 0 and group.punish == False %}
+                {% elif group.amt_embezzled_g > 0 and group.punish == True %}
+                    <font color="darkblue">Salah satu dari anggota kelompok anda mencoba melakukan penggelapan namun <b>gagal</b> dan dikenai denda.</font>
+                {% endif %}
+            {% else %}
+            {% endif %}
+
+        {% elif player.treatmentgroup == '2' %}
+            {% if group.amt_embezzled_g > 0 %}
+                {% if group.amt_embezzled_g > 0 and group.punish == False %}
+                {% elif group.amt_embezzled_g > 0 and group.punish == True %}
+                    <font color="darkblue">Salah satu dari anggota kelompok anda mencoba melakukan penggelapan namun <b>gagal</b>.
+                        Ia telah dihukum sebesar biaya sosial dari penggelapan tersebut.</font>
+                {% endif %}
+            {% else %}
+            {% endif %}
+
+        {% endif %}
+    </p>
+
+    <table class="table-condensed" style="width:450px; margin-top:20px;">
+        <tr><td>Sumbangan Anda:</td><td><font color="green">{{ player.contribution }}</font></td></tr>
+
+        <tr><td colspan="2"><hr/></td></tr>
+        <tr><td>Sumbangan terkumpul:</td><td><font color="blue">{{ group.contribution_left }}</font></td></tr>
+        <tr><td>Nilai proyek bersama: (<font color="blue">{{ group.contribution_left }}</font> x multiplier {{ subsession.multiplier}})
+            :</td><td><font color="chocolate">{{ group.social_welfare_embz }}</font></td></tr>
+
+        <tr><td colspan="2"><hr/></td></tr>
+
+        <tr><td><font size="5"><b>Kalkulasi poin Anda:</b></font></td></tr>
+
+        <tr><td>Sisa poin Anda ({{ player.endowment }} - <font color="green">{{player.contribution}}</font>):</td><td><b>+{{ point_left }}</b></td></tr>
+
+        {% if player.embezzler == True %}
+            <tr><td>Sumbangan total yang Anda ambil:</td><td><b>+{{ group.amt_embezzled_g }}</b></td></tr>
+            {% if group.punish == True and group.social_welfare_embz < group.social_welfare %}
+                {% if player.treatmentgroup == '1' %}
+                    <tr><td>Denda:</td><td><b>-{{ fine }}</b></td></tr>
+                {% elif player.treatmentgroup == '2' %}
+                    <tr><td>Denda:</td><td><b>-{{ social_cost }}</b></td></tr>
+                {% else %}{% endif %}
+            {% else %}{% endif %}
+        {% else %}{% endif %}
+
+        <tr><td>Jatah individu dari proyek bersama
+            <br>(<font color="chocolate">{{group.social_welfare_embz }}</font> / {{Constants.players_per_group}} pemain):
+            </td><td><b>+{{ indv_share_project }}</b></td></tr>
+
+        <tr><td colspan="2"><hr/></td></tr>
+
+        <tr><td>Poin Ronde ini ({{subsession.round_number}}):</td><td><font size="5"><b>{{ player.payoff_thisround }}</b></font></td></tr>
+
+    </table>
+    <p></p>
+
+    <br>Tekan tombol di bawah untuk melanjutkan ke ronde berikutnya.
+    <br>
+    <br>
+    <button class="otree-btn-next btn btn-primary next-button otree-next-button">Mainkan Ronde Berikutnya</button>
+
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Pengantar - Eksperimen Bagian A
+{% endblock %}
+
+{% block content %}
+
+    Selamat datang di bagian A dari eksperimen ini. Bagian A terdiri atas <b>1 ronde A1</b> dan
+    <b>{{ num_rounds }} ronde A2</b>. Sebelumnya,
+    anda akan mendapatkan kesempatan untuk <i>berlatih</i> sebanyak <b>{{ num_training_rounds }}</b> kali untuk memahami bagaimana
+    permainan ini bekerja.
+    <br>
+    <br>
+    Silakan menunggu video instruksi untuk dimainkan sesaat lagi.
+    <br>
+    <br>
+    <font color="darkred"><b>Tekan tombol <i>lanjut</i> hanya jika telah diinstruksikan oleh eksperimenter!</b></font>
+    <br>
+    <br>
+    <button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
+
+{% endblock %}

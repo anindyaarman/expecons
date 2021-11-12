@@ -1,0 +1,24 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    PERHATIAN!
+{% endblock %}
+
+{% block content %}
+    <div class="alert alert-warning">
+    <div align="center"><b>PERHATIAN:</b></div>
+    <br>
+    Ronde latihan telah usai. Anda akan mulai memasuki permainan di ronde berikutnya.
+    <br>
+    <br>
+    Seluruh keputusan Anda di ronde berikutnya akan mempengaruhi pendapatan Anda! Jika Anda masih memiliki pertanyaan,
+    saat ini adalah kesempatan terakhir untuk Anda bertanya kepada eksperimenter.
+    </div>
+    <div align="center">
+    Jika Anda sudah merasa siap, silakan klik 'lanjut'.
+    <br>
+    <br>
+    <button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button></div>
+
+{% endblock %}

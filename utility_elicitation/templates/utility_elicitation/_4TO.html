@@ -1,0 +1,56 @@
+{% extends "global/Base.html" %}
+{% load otree static %}
+
+{% block title %}
+    <i>Trade-off Method</i> - Ronde {{ round }}
+{% endblock %}
+
+{% block content %}
+
+Anda dihadapkan antara <b>opsi A</b> dan <b>opsi B.</b><br>
+Salah satu dari A dan B akan diundi di akhir permainan. Pilihlah nilai <b>X</b> yang membuat Anda <i>sama puasnya</i> menerima
+<b>opsi A</b> ataupun <b>opsi B.</b>
+<br>
+<br>
+{% if round == 1 %}
+    <table>
+        <tr style="background:#3a3a3a;color:#ffffff"><td>Opsi A</td><td> </td><td>Opsi B</td></tr>
+        <tr><td>{{ Pe }}% peluang mendapatkan <b>X</b>,<br> {{ cPe }}% peluang mendapatkan {{ rmin }}</td><td>
+            <i>Buat saya menerima A maupun B sama saja</i>
+        </td>
+            <td>{{ Pe }}% peluang mendapatkan {{ base }},<br> {{ cPe }}% peluang mendapatkan {{ rmax }}</td></tr>
+    </table>
+{% else %}
+    <table>
+        <tr style="background:#3a3a3a;color:#ffffff"><td>Opsi A</td><td> </td><td>Opsi B</td></tr>
+        <tr><td>{{ Pe }}% peluang mendapatkan <b>X</b>,<br> {{ cPe }}% peluang mendapatkan {{ rmin }}</td><td>
+            <i>Buat saya menerima A maupun B sama saja</i>
+        </td>
+            <td>{{ Pe }}% peluang mendapatkan {{ x1 }},<br> {{ cPe }}% peluang mendapatkan {{ rmax }}</td></tr>
+    </table>
+{% endif %}
+<br>
+Nilai <b>X</b> terbaik untuk saya adalah: <input type="number" name="TOIndifference" value="" required>
+
+{% block styles %}
+<style type="text/css">
+table {
+    text-align: center;
+    border: 1 px solid;
+    padding: 5px;
+}
+th, td {
+    border: 1px solid ;
+    padding: 5px;
+}
+</style>
+{% endblock%}
+
+
+{% next_button %}
+
+{% endblock%}
+
+{% block scripts %}
+
+{% endblock %}

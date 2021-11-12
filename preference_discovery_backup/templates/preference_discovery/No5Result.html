@@ -1,0 +1,51 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Hasil Ronde Ke-{{ round }} dari {{ playable_rounds }}
+{% endblock %}
+
+{% block content %}
+
+    Anda mendapatkan <b>{{util|floatformat:0}} poin</b> di ronde ini. Berikut rincian lotere Anda:
+    <style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
+.tg td{padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+.tg th{font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+</style>
+    <div class="card" style="text-align:center">
+        <div class="card-body">
+            <center>
+               <table class="tg">
+                  <tr>
+                    <th class="tg-6qw1">﻿Jenis Lotere</th>
+                    <th class="tg-6qw1">﻿Menang/Kalah</th>
+                    <th class="tg-6qw1">Jumlah yang Ditukar</th>
+                    <th class="tg-6qw1">Hasil per Koin</th>
+                    <th class="tg-6qw1">Total Hasil per Lotere</th>
+                  </tr>
+                  {% for i, j, k, l, m in lists %}
+                  <tr>
+                    <td class="tg-baqh">{{i}}</td>
+                    <td class="tg-baqh">{%if j == "Win" %}Menang{% else %}Kalah{% endif %}</td>
+                    <td class="tg-baqh">{{k}}</td>
+                    <td class="tg-baqh">{{l}}</td>
+                    <td class="tg-baqh">{{m}}</td>
+                  </tr>
+                  {% endfor %}
+                  <tr>
+                    <td class="tg-baqh" colspan="4">Total</td>
+                    <td class="tg-baqh"><b>{{util|floatformat:0}} poin</b></td>
+                  </tr>
+               </table>
+            </center>
+        </div>
+    </div>
+    <br>Tekan tombol 'Lanjut' untuk masuk ke tahap berikutnya.
+    <br>
+    <br>
+    <button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
+{% endblock %}
+
+

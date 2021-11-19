@@ -63,7 +63,7 @@ class Player(BasePlayer):
             df.loc[i,"A_or_B"] = np.random.choice(["A","B"], p=[df.loc[i,"p1"],df.loc[i,"p2"]])
             df.loc[i,"payoff"] = df.loc[i,"x1"] * df.loc[i,"Allocation"] if df.loc[i,"A_or_B"] == "A" else df.loc[i,"x2"] * df.loc[i,"Allocation"]
         self.payoff_thisround = int(df[["payoff"]].sum())
-        if self.training_round == False:
+        if not self.training_round:
             self.participant.vars["payoff_vector"].append(self.payoff_thisround)
         self.participant.vars["prospect_table"].update(df)
         for i in range(0, len(self.participant.vars["prospect_table"])):

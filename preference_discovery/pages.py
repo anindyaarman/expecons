@@ -1,10 +1,4 @@
-from otree.api import Currency as c, currency_range
-from ._builtin import Page, WaitPage
-from .models import Constants
-import ast
-import random
-import numpy as np
-import math
+from ._builtin import Page
 
 
 class No1Introduction(Page):
@@ -21,10 +15,11 @@ class No2Instructions1(Page):
     def vars_for_template(self):
         return {
             'endowment': self.session.config["endowment"],
-            'instrument' : "preference_discovery/SC1.jpg",
+            'instrument': "preference_discovery/SC1.jpg",
             'result': "preference_discovery/SC2.jpg",
             'show_up_fee': int(self.session.config["participation_fee"]),
         }
+
 
 class No2Warning(Page):
 
@@ -37,7 +32,7 @@ class No3Start(Page):
     def is_displayed(self):
         return self.round_number <= self.session.config['rounds']
 
-    def before_next_page(self):
+    def before_next_page(self, **kwargs):
         return {self.player.set_player_param()}
 
     def vars_for_template(self):
@@ -63,11 +58,16 @@ class No4Purchase(Page):
             'training': self.round_number <= self.session.config["training_rounds"],
             'training_round': self.round_number,
             'round': self.round_number - self.session.config["training_rounds"],
-            'lot_1': p.iloc[0,2],'gain_A_1': p.iloc[0,3],'prob_A_1': p.iloc[0,4],'gain_B_1': p.iloc[0,5],'prob_B_1': p.iloc[0,6],'rel_1': p.iloc[0,7],
-            'lot_2': p.iloc[1,2],'gain_A_2': p.iloc[1,3],'prob_A_2': p.iloc[1,4],'gain_B_2': p.iloc[1,5],'prob_B_2': p.iloc[1,6],'rel_2': p.iloc[1,7],
-            'lot_3': p.iloc[2,2],'gain_A_3': p.iloc[2,3],'prob_A_3': p.iloc[2,4],'gain_B_3': p.iloc[2,5],'prob_B_3': p.iloc[2,6],'rel_3': p.iloc[2,7],
-            'lot_4': p.iloc[3,2],'gain_A_4': p.iloc[3,3],'prob_A_4': p.iloc[3,4],'gain_B_4': p.iloc[3,5],'prob_B_4': p.iloc[3,6],'rel_4': p.iloc[3,7],
-            'lot_5': p.iloc[4,2],'gain_A_5': p.iloc[4,3],'prob_A_5': p.iloc[4,4],'gain_B_5': p.iloc[4,5],'prob_B_5': p.iloc[4,6],'rel_5': p.iloc[4,7],
+            'lot_1': p.iloc[0, 2], 'gain_A_1': p.iloc[0, 3], 'prob_A_1': p.iloc[0, 4], 'gain_B_1': p.iloc[0, 5],
+            'prob_B_1': p.iloc[0, 6], 'rel_1': p.iloc[0, 7],
+            'lot_2': p.iloc[1, 2], 'gain_A_2': p.iloc[1, 3], 'prob_A_2': p.iloc[1, 4], 'gain_B_2': p.iloc[1, 5],
+            'prob_B_2': p.iloc[1, 6], 'rel_2': p.iloc[1, 7],
+            'lot_3': p.iloc[2, 2], 'gain_A_3': p.iloc[2, 3], 'prob_A_3': p.iloc[2, 4], 'gain_B_3': p.iloc[2, 5],
+            'prob_B_3': p.iloc[2, 6], 'rel_3': p.iloc[2, 7],
+            'lot_4': p.iloc[3, 2], 'gain_A_4': p.iloc[3, 3], 'prob_A_4': p.iloc[3, 4], 'gain_B_4': p.iloc[3, 5],
+            'prob_B_4': p.iloc[3, 6], 'rel_4': p.iloc[3, 7],
+            'lot_5': p.iloc[4, 2], 'gain_A_5': p.iloc[4, 3], 'prob_A_5': p.iloc[4, 4], 'gain_B_5': p.iloc[4, 5],
+            'prob_B_5': p.iloc[4, 6], 'rel_5': p.iloc[4, 7],
             'df': self.participant.vars["prospect_table"],
             'pagehold_timer': self.session.config['submit_delay'],
             'pagehold_timer_ths': self.session.config['submit_delay'] * 1000,
@@ -81,12 +81,12 @@ class No4Purchase(Page):
 
     def error_message(self, values):
         if values['Lotere_A'] + values['Lotere_B'] + values['Lotere_C'] + values['Lotere_D'] + values['Lotere_E'] <= \
-               self.session.config["endowment"]:
+                self.session.config["endowment"]:
             return
         return 'Total alokasi untuk seluruh alternatif tidak boleh lebih dari {0} poin!'.format(
             str(self.session.config["endowment"]))
 
-    def before_next_page(self):
+    def before_next_page(self, **kwargs):
         return {self.player.payoff_realizer()}
 
 
@@ -96,7 +96,7 @@ class No5Result(Page):
         return self.round_number <= self.session.config['rounds']
 
     def vars_for_template(self):
-        df = self.participant.vars["displayed_prospects"][["x1","x2","Allocation","A_or_B","payoff"]]
+        df = self.participant.vars["displayed_prospects"][["x1", "x2", "Allocation", "A_or_B", "payoff"]]
         return {
             'training': self.round_number <= self.session.config["training_rounds"],
             'training_round': self.round_number,

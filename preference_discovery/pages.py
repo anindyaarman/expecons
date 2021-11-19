@@ -80,8 +80,11 @@ class No4Purchase(Page):
         return fields
 
     def error_message(self, values):
-        if values['Lotere_A'] + values['Lotere_B'] + values['Lotere_C'] + values['Lotere_D'] + values['Lotere_E'] > self.session.config["endowment"]:
-            return 'Total alokasi untuk seluruh alternatif tidak boleh lebih dari ' + str(self.session.config["endowment"]) + " poin!"
+        if values['Lotere_A'] + values['Lotere_B'] + values['Lotere_C'] + values['Lotere_D'] + values['Lotere_E'] <= \
+               self.session.config["endowment"]:
+            return
+        return 'Total alokasi untuk seluruh alternatif tidak boleh lebih dari {0} poin!'.format(
+            str(self.session.config["endowment"]))
 
     def before_next_page(self):
         return {self.player.payoff_realizer()}

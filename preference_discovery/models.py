@@ -1,16 +1,14 @@
+from random import sample
+
+import numpy as np
+import pandas as pd
 from otree.api import (
     models,
-    widgets,
     BaseConstants,
     BaseSubsession,
     BaseGroup,
     BasePlayer,
-    Currency as c,
-    currency_range,
 )
-import numpy as np
-import pandas as pd
-from random import sample
 
 author = 'Putu Sanjiwacika Wibisana'
 
@@ -46,17 +44,20 @@ class Player(BasePlayer):
             self.participant.vars["payoff_vector"] = list()
         elif self.round_number == self.session.config["training_rounds"] + 1:
             self.participant.vars["prospect_table"] = Constants.prospects
-        #randomizer
-        rand = sample(list(range(0,20)),4)
+        # randomizer
+        rand = sample(list(range(0, 20)), 4)
         rand.append(20)
         self.participant.vars["random_indexes"] = rand
-        self.participant.vars["displayed_lotteries"] = list(self.participant.vars["prospect_table"].loc[self.participant.vars["random_indexes"],"Index"])
-        self.participant.vars["displayed_prospects"] = self.participant.vars["prospect_table"].loc[self.participant.vars["random_indexes"],:]
+        self.participant.vars["displayed_lotteries"] = list(
+            self.participant.vars["prospect_table"].loc[self.participant.vars["random_indexes"], "Index"])
+        self.participant.vars["displayed_prospects"] = self.participant.vars["prospect_table"].loc[
+                                                       self.participant.vars["random_indexes"], :]
         self.displayed_lotteries = str(list(self.participant.vars["displayed_lotteries"]))
 
     def payoff_realizer(self):
         df = self.participant.vars["displayed_prospects"]
-        df[["Allocation"]] = [self.Lotere_A, self.Lotere_B, self.Lotere_C, self.Lotere_D, self.Lotere_E]                ### df[["Allocation"]] = [0,0,2,1,2]
+        df[["Allocation"]] = [self.Lotere_A, self.Lotere_B, self.Lotere_C, self.Lotere_D,
+                              self.Lotere_E]  ### df[["Allocation"]] = [0,0,2,1,2]
         df[["payoff"]] = [0, 0, 0, 0, 0]
         for i in self.participant.vars["random_indexes"]:
             df.loc[i,"A_or_B"] = np.random.choice(["A","B"], p=[df.loc[i,"p1"],df.loc[i,"p2"]])
@@ -65,12 +66,12 @@ class Player(BasePlayer):
         if self.training_round == False:
             self.participant.vars["payoff_vector"].append(self.payoff_thisround)
         self.participant.vars["prospect_table"].update(df)
-        for i in range(0,len(self.participant.vars["prospect_table"])):
-            if self.participant.vars["prospect_table"].loc[i,"A_or_B"] != "X":
-                if self.participant.vars["prospect_table"].loc[i,"A_or_B"] == "A":
+        for i in range(0, len(self.participant.vars["prospect_table"])):
+            if self.participant.vars["prospect_table"].loc[i, "A_or_B"] != "X":
+                if self.participant.vars["prospect_table"].loc[i, "A_or_B"] == "A":
                     self.participant.vars["prospect_table"].loc[i, "p1"] = 1
                     self.participant.vars["prospect_table"].loc[i, "p2"] = 0
-                elif self.participant.vars["prospect_table"].loc[i,"A_or_B"] == "B":
+                elif self.participant.vars["prospect_table"].loc[i, "A_or_B"] == "B":
                     self.participant.vars["prospect_table"].loc[i, "p1"] = 0
                     self.participant.vars["prospect_table"].loc[i, "p2"] = 1
             else:

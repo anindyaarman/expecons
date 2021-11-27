@@ -56,9 +56,13 @@ class Player(BasePlayer):
 
     def payoff_realizer(self):
         df = self.participant.vars["displayed_prospects"]
-        df[["Allocation"]] = [self.Lotere_A, self.Lotere_B, self.Lotere_C, self.Lotere_D,
+        print("new")
+        print(df)
+        print("ori")
+        print(self.participant.vars["displayed_prospects"])
+        df["Allocation"] = [self.Lotere_A, self.Lotere_B, self.Lotere_C, self.Lotere_D,
                               self.Lotere_E]  ### df[["Allocation"]] = [0,0,2,1,2]
-        df[["payoff"]] = [0, 0, 0, 0, 0]
+        df["payoff"] = [0, 0, 0, 0, 0]
         for i in self.participant.vars["random_indexes"]:
             df.loc[i,"A_or_B"] = np.random.choice(["A","B"], p=[df.loc[i,"p1"],df.loc[i,"p2"]])
             df.loc[i,"payoff"] = df.loc[i,"x1"] * df.loc[i,"Allocation"] if df.loc[i,"A_or_B"] == "A" else df.loc[i,"x2"] * df.loc[i,"Allocation"]
@@ -83,11 +87,13 @@ class Player(BasePlayer):
     displayed_lotteries = models.StringField()
     training_round = models.BooleanField()
 
+    
     Lotere_A = models.IntegerField(min=0, max=10, initial=0)
     Lotere_B = models.IntegerField(min=0, max=10, initial=0)
     Lotere_C = models.IntegerField(min=0, max=10, initial=0)
     Lotere_D = models.IntegerField(min=0, max=10, initial=0)
     Lotere_E = models.IntegerField(min=0, max=10, initial=0)
+    
 
     ## Vars for questionnaire
 

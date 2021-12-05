@@ -36,7 +36,7 @@ SESSION_CONFIGS = [
         app_sequence=['preference_discovery'],
         endowment=3,
         training_rounds=3,
-        submit_delay=5,
+        submit_delay=15,
         rounds=10,
     ),
 ]

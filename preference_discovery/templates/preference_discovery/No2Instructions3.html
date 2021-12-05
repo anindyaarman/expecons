@@ -1,0 +1,33 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Instruksi Eksperimen
+{% endblock %}
+
+{% block content %}
+
+<br>
+<br>
+<h4><b>3. Durasi Eksperimen</b></h4>
+<br>
+Kami mengestimasi penyelesaian rangkaian eksperimen ini selama lebih-kurang 90 menit. Namun hal ini tergantung dari
+bagaimana Anda memahami instruksi dan waktu yang Anda butuhkan untuk memutuskan alokasi Anda. Kami harap Anda menyelesaikan
+eksperimen ini secara mandiri karena akan menentukan pembayaran yang Anda peroleh! Anda dapat menghubungi kami melalui
+WhatsApp di nomor +6281288106065 jika ada hal-hal yang perlu Anda tanyakan.
+<br>
+<br>
+<h4><b>4. Pembayaran</b></h4>
+<br>
+Satu ronde dari semua blok akan diacak melalui distribusi seragam untuk menjadi basis pembayaran Anda. Poin yang Anda
+peroleh dari ronde tersebut dikalikan dengan Rp1.000. Pembayaran ini akan ditambah dengan uang kehadiran Rp {{show_up_fee}}. Anda
+dapat memilih salah satu dari opsi transfer uang untuk pembayaran Anda: i) OVO Pay, ii) GoPay, iii) Shopee Pay, iv)
+transfer ke Bank Mandiri, v) transfer ke Bank BNI. Anda akan mendapatkan pembayaran segera setelah Anda menyelesaikan
+eksperimen.
+
+<br>Tekan tombol 'Lanjut' jika Anda sudah memahami instruksi di atas.
+<br>
+<br>
+<button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
+
+{% endblock %}

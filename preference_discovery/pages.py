@@ -21,6 +21,48 @@ class No2Instructions1(Page):
         }
 
 
+class No2Instructions2(Page):
+
+    def is_displayed(self):
+        return self.round_number == 1
+
+    def vars_for_template(self):
+        return {
+            'endowment': self.session.config["endowment"],
+            'instrument': "preference_discovery/SC1.jpg",
+            'result': "preference_discovery/SC2.jpg",
+            'show_up_fee': int(self.session.config["participation_fee"]),
+        }
+
+
+class No2Instructions3(Page):
+
+    def is_displayed(self):
+        return self.round_number == 1
+
+    def vars_for_template(self):
+        return {
+            'endowment': self.session.config["endowment"],
+            'instrument': "preference_discovery/SC1.jpg",
+            'result': "preference_discovery/SC2.jpg",
+            'show_up_fee': int(self.session.config["participation_fee"]),
+        }
+
+
+class No2Instructions4(Page):
+
+    def is_displayed(self):
+        return self.round_number == 1
+
+    def vars_for_template(self):
+        return {
+            'endowment': self.session.config["endowment"],
+            'instrument': "preference_discovery/SC1.jpg",
+            'result': "preference_discovery/SC2.jpg",
+            'show_up_fee': int(self.session.config["participation_fee"]),
+        }
+
+
 class No2Warning(Page):
 
     def is_displayed(self):
@@ -124,6 +166,9 @@ class No6EndResult(Page):
 
 page_sequence = [No1Introduction,
                  No2Instructions1,
+                 No2Instructions2,
+                 No2Instructions3,
+                 No2Instructions4,
                  No2Warning,
                  No3Start,
                  No4Purchase,

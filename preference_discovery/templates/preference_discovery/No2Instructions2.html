@@ -1,0 +1,43 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Instruksi Eksperimen
+{% endblock %}
+
+{% block content %}
+
+<br>
+<br>
+<h4><b>2. Contoh Sebuah Ronde</b></h4>
+
+Anda akan menghadapi layar sebagai berikut di sebuah ronde yang Anda mainkan—asumsikan Alternatif 1 sampai dengan
+Alternatif 5 muncul dari hasil acakan di ronde ini.
+
+<br>
+<br>
+<img src='{% static instrument %}' alt='Snow' style='width:80%' border="5"/>
+<br>
+<br>
+Di sini Anda memiliki {{endowment}} token yang bebas Anda alokasikan untuk 5 alternatif (1 alternatif pasti dan 4 alternatif probabilistik)
+dengan memasukkan angka pada kotak token di masing-masing alternatif. Sebagai contoh Anda mengalokasikan 2 token pada
+Alternatif 1 dan 1 token pada Alternatif 2. Anda harus menekan tombol ‘KONFIRMASI’ (yang akan aktif setelah 15 detik dari
+pertama kali Anda masuk ke ronde ini) untuk mengeksekusi alokasi Anda. Poin yang Anda dapatkan dari Ronde 1 ini—berdasarkan
+acakan sistem—diinformasikan di halaman berikutnya.
+<br>
+<br>
+<img src='{% static result %}' alt='Snow' style='width:80%' border="5"/>
+<br>
+<br>
+Total poin yang Anda peroleh dari Ronde 1 ini adalah 32 poin berdasarkan alokasi Anda dan hasil acakan sistem. Ingat,
+token yang tidak Anda alokasikan tidak akan menjadi poin bagi Anda di ronde terkait! Anda juga tidak dapat kembali ke
+ronde ini jika Anda telah mengeksekusi alokasi Anda! Tekan tombol ‘LANJUT’ untuk menuju ke ronde selanjutnya.
+Alternatif probabilistik yang telah Anda pilih akan menjadi alternatif pasti di ronde selanjutnya jika alternatif tersebut
+muncul dari hasil acakan.
+
+<br>Tekan tombol 'Lanjut' jika Anda sudah memahami instruksi di atas.
+<br>
+<br>
+    <button id="Lanjut" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
+
+{% endblock %}

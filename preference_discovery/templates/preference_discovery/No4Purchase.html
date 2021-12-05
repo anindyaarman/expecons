@@ -50,12 +50,12 @@ Anda miliki. Anda tidak akan mendapatkan poin dari token yang tidak Anda alokasi
     </tbody>
     </table>
     <br>
-    <p>Tekan tombol 'Tukar' jika sudah yakin dengan pilihan Anda.</p>
+    <p>Tekan tombol 'Lanjut' jika sudah yakin dengan pilihan Anda. Tekan tombol 'Reset' jika ingin mengubah pilihan Anda. </p>
     <p>Anda dapat melanjutkan ke halaman berikutnya setelah <span id="countdown">{{pagehold_timer}}</span> detik. Sembari menunggu, pastikan
     kembali keputusan Anda benar-benar sesuai dengan keinginan Anda.</p>
     <div class="btn-group">
-      <button id="lanjut" disabled="disabled" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut ke halaman berikutnya</button>
-      <button id="reset" type="reset" class="otree-btn-next btn-outline-danger btn">Reset</button>
+      <button id="Lanjut" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut ke halaman berikutnya</button>
+      <button id="Reset" type="reset" class="otree-btn-next btn-outline-danger btn">Reset</button>
     </div>
 
 {% endblock %}
@@ -66,8 +66,8 @@ Anda miliki. Anda tidak akan mendapatkan poin dari token yang tidak Anda alokasi
     setTimeout(function() {
         document.getElementById('lanjut').disabled = false;
     }, {{pagehold_timer_ths}});
-    var seconds = document.getElementById("countdown").textContent;
-    var countdown = setInterval(function() {
+    let seconds = document.getElementById("countdown").textContent;
+    const countdown = setInterval(function () {
         seconds--;
         document.getElementById("countdown").textContent = seconds;
         if (seconds <= 0) clearInterval(countdown);

@@ -15,8 +15,6 @@ class No2Instructions1(Page):
     def vars_for_template(self):
         return {
             'endowment': self.session.config["endowment"],
-            'instrument': "preference_discovery/SC1.jpg",
-            'result': "preference_discovery/SC2.jpg",
             'show_up_fee': int(self.session.config["participation_fee"]),
         }
 
@@ -29,8 +27,8 @@ class No2Instructions2(Page):
     def vars_for_template(self):
         return {
             'endowment': self.session.config["endowment"],
-            'instrument': "preference_discovery/SC1.jpg",
-            'result': "preference_discovery/SC2.jpg",
+            'instrument': "preference_discovery/SC-1.jpeg",
+            'result': "preference_discovery/SC-2.jpeg",
             'show_up_fee': int(self.session.config["participation_fee"]),
         }
 
@@ -43,8 +41,6 @@ class No2Instructions3(Page):
     def vars_for_template(self):
         return {
             'endowment': self.session.config["endowment"],
-            'instrument': "preference_discovery/SC1.jpg",
-            'result': "preference_discovery/SC2.jpg",
             'show_up_fee': int(self.session.config["participation_fee"]),
         }
 
@@ -57,8 +53,6 @@ class No2Instructions4(Page):
     def vars_for_template(self):
         return {
             'endowment': self.session.config["endowment"],
-            'instrument': "preference_discovery/SC1.jpg",
-            'result': "preference_discovery/SC2.jpg",
             'show_up_fee': int(self.session.config["participation_fee"]),
         }
 

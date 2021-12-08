@@ -54,7 +54,7 @@ Anda miliki. Anda tidak akan mendapatkan poin dari token yang tidak Anda alokasi
     <p>Anda dapat melanjutkan ke halaman berikutnya setelah <span id="countdown">{{pagehold_timer}}</span> detik. Sembari menunggu, pastikan
     kembali keputusan Anda benar-benar sesuai dengan keinginan Anda.</p>
     <div class="btn-group">
-      <button id="Lanjut" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut ke halaman berikutnya</button>
+      <button id="Lanjut" disabled="disabled" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
       <button id="Reset" type="reset" class="otree-btn-next btn-outline-danger btn">Reset</button>
     </div>
 
@@ -64,7 +64,7 @@ Anda miliki. Anda tidak akan mendapatkan poin dari token yang tidak Anda alokasi
 
     <script type="text/javascript">
     setTimeout(function() {
-        document.getElementById('lanjut').disabled = false;
+        document.getElementById('Lanjut').disabled = false;
     }, {{pagehold_timer_ths}});
     let seconds = document.getElementById("countdown").textContent;
     const countdown = setInterval(function () {

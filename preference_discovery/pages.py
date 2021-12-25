@@ -1,6 +1,7 @@
 from ._builtin import Page
 
 
+
 class No1Introduction(Page):
 
     def is_displayed(self):

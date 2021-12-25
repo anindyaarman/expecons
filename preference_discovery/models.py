@@ -8,6 +8,8 @@ from otree.api import (
     BaseSubsession,
     BaseGroup,
     BasePlayer,
+    Currency as c,
+    currency_range,
 )
 
 author = 'Putu Sanjiwacika Wibisana'
@@ -21,16 +23,34 @@ class Constants(BaseConstants):
     name_in_url = 'preference_discovery_v2'
     players_per_group = None
     num_rounds = 20
+
+    endowment = c(10)
+    multiplier = 3
+
     with open('preference_discovery/Lottery.csv', encoding="utf-8") as file:
         prospects = pd.read_csv(file)
 
+    instructions_template = 'preference_discovery/No6EndResult.html'
 
 class Subsession(BaseSubsession):
     pass
 
 
 class Group(BaseGroup):
-    pass
+    sent_amount = models.CurrencyField(
+        min=c(0), max=Constants.endowment, doc="""Amount sent by P1"""
+    )
+
+    sent_back_amount = models.CurrencyField(doc="""Amount sent back by P2""")
+
+    def sent_back_amount_choices(self):
+        return currency_range(c(0), self.sent_amount * Constants.multiplier, c(1))
+
+    def set_payoffs(self):
+        p1 = self.get_player_by_id(1)
+        p2 = self.get_player_by_id(2)
+        p1.payoff = Constants.endowment - self.sent_amount + self.sent_back_amount
+        p2.payoff = self.sent_amount * Constants.multiplier - self.sent_back_amount
 
 
 class Player(BasePlayer):

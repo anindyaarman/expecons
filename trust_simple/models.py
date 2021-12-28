@@ -17,7 +17,7 @@ Simple trust game
 
 class Constants(BaseConstants):
     name_in_url = 'trust_simple'
-    players_per_group = 2
+    players_per_group = 1
     num_rounds = 1
 
     endowment = c(10)

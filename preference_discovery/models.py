@@ -23,35 +23,37 @@ class Constants(BaseConstants):
     name_in_url = 'preference_discovery_v2'
     players_per_group = None
     num_rounds = 20
-
-    endowment = c(10)
-    multiplier = 3
+    endowment = c(1000)
+    multiplier = 2
 
     with open('preference_discovery/Lottery.csv', encoding="utf-8") as file:
         prospects = pd.read_csv(file)
-
-    instructions_template = 'preference_discovery/No6EndResult.html'
 
 class Subsession(BaseSubsession):
     pass
 
 
 class Group(BaseGroup):
-    sent_amount = models.CurrencyField(
-        min=c(0), max=Constants.endowment, doc="""Amount sent by P1"""
-    )
+    total_contribution = models.CurrencyField()
 
-    sent_back_amount = models.CurrencyField(doc="""Amount sent back by P2""")
-
-    def sent_back_amount_choices(self):
-        return currency_range(c(0), self.sent_amount * Constants.multiplier, c(1))
-
-    def set_payoffs(self):
-        p1 = self.get_player_by_id(1)
-        p2 = self.get_player_by_id(2)
-        p1.payoff = Constants.endowment - self.sent_amount + self.sent_back_amount
-        p2.payoff = self.sent_amount * Constants.multiplier - self.sent_back_amount
-
+    def set_payoff(self):
+        players = self.get_players()
+        choices = [p.choice for p in players]
+        self.total_choices = sum(choices)
+        if self.session.config['treatment'] == "VC":
+            self.total_earnings = self.total_choices * Constants.multiplier
+            self.individual_share = (
+                    self.total_earnings / Constants.players_per_group
+            )
+            for p in players:
+                p.payoff = Constants.endowment - p.choice + self.individual_share
+        else:  # treatment CP
+            self.total_earnings = ((Constants.endowment * Constants.players_per_group) - self.total_choices) * Constants.multiplier
+            self.individual_share = (
+                    self.total_earnings / Constants.players_per_group
+            )
+            for p in players:
+                p.payoff = p.choice + self.individual_share
 
 class Player(BasePlayer):
 
@@ -102,7 +104,9 @@ class Player(BasePlayer):
                 pass
         self.participant.vars["displayed_prospects"] = df
 
+
     endowment = models.IntegerField()
+    player_payoff = models.CurrencyField()
     payoff_thisround = models.IntegerField()
     displayed_lotteries = models.StringField()
     training_round = models.BooleanField()

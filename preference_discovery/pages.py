@@ -1,7 +1,6 @@
 from ._builtin import Page
 
 
-
 class No1Introduction(Page):
 
     def is_displayed(self):
@@ -158,6 +157,10 @@ class No6EndResult(Page):
     def is_displayed(self):
         return self.round_number == self.session.config['rounds']
 
+    def vars_for_template(self):
+        return {
+            'player_payoff': self.player.participant.payoff # from player to participant we get the total earnings cumulative,
+        }
 
 page_sequence = [No1Introduction,
                  No2Instructions1,

@@ -159,7 +159,7 @@ class No6EndResult(Page):
 
     def vars_for_template(self):
         return {
-            'player_payoff': self.player.participant.payoff # from player to participant we get the total earnings cumulative,
+            'player_payoff': self.player.payoff
         }
 
 page_sequence = [No1Introduction,

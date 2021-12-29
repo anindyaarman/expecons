@@ -34,26 +34,18 @@ class Subsession(BaseSubsession):
 
 
 class Group(BaseGroup):
-    total_contribution = models.CurrencyField()
+    payoff_thisround = models.CurrencyField()
+    player_payoff = models.CurrencyField()
 
     def set_payoff(self):
         players = self.get_players()
-        choices = [p.choice for p in players]
-        self.total_choices = sum(choices)
-        if self.session.config['treatment'] == "VC":
-            self.total_earnings = self.total_choices * Constants.multiplier
-            self.individual_share = (
-                    self.total_earnings / Constants.players_per_group
-            )
-            for p in players:
-                p.payoff = Constants.endowment - p.choice + self.individual_share
-        else:  # treatment CP
-            self.total_earnings = ((Constants.endowment * Constants.players_per_group) - self.total_choices) * Constants.multiplier
-            self.individual_share = (
-                    self.total_earnings / Constants.players_per_group
-            )
-            for p in players:
-                p.payoff = p.choice + self.individual_share
+        payoff_thisround = [p.payoff_thisround for p in players]
+        self.player_payoff = sum(payoff_thisround)
+
+    def set_tot_payoffs(self):
+        player_payoff = sum([p.payoff for p in self.player.in_previous_rounds()])
+        return player_payoff
+
 
 class Player(BasePlayer):
 
@@ -89,6 +81,7 @@ class Player(BasePlayer):
             df.loc[i,"A_or_B"] = np.random.choice(["A","B"], p=[df.loc[i,"p1"],df.loc[i,"p2"]])
             df.loc[i,"payoff"] = df.loc[i,"x1"] * df.loc[i,"Allocation"] if df.loc[i,"A_or_B"] == "A" else df.loc[i,"x2"] * df.loc[i,"Allocation"]
         self.payoff_thisround = int(df[["payoff"]].sum())
+        self.payoff = self.payoff_thisround
         if not self.training_round:
             self.participant.vars["payoff_vector"].append(self.payoff_thisround)
         self.participant.vars["prospect_table"].update(df)
@@ -104,9 +97,12 @@ class Player(BasePlayer):
                 pass
         self.participant.vars["displayed_prospects"] = df
 
+    def set_payoff(self):
+        self.payiff = self.payoff_thisround
+
 
     endowment = models.IntegerField()
-    player_payoff = models.CurrencyField()
+    player_payoff = models.IntegerField()
     payoff_thisround = models.IntegerField()
     displayed_lotteries = models.StringField()
     training_round = models.BooleanField()

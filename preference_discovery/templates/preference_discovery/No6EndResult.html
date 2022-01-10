@@ -2,15 +2,22 @@
 {% load otree static %}
 
 {% block title %}
-    Hasil Seluruh Ronde
+    Total Poin
 {% endblock %}
 
 {% block content %}
 
-    Terima kasih atas partisipasi Anda. Total poin yang Anda kumpulkan adalah sebanyak <b>{{player_payoff}}.</b>
+    Terima kasih Anda telah menyelesaikan permainan pada Block 1.
+    Poin yang Anda peroleh melalui distribusi acak seluruh ronde yang Anda mainkan pada Block 1 adalah sebanyak <b>{{player_payoff}}.</b>
     <br>
     <br>
-    Anda dipersilakan untuk meninggalkan ruangan ini. Silakan tukarkan kartu peserta Anda dengan pembayaran.
+    {% formfields %}
+    <br>
+    <br>
+    Tekan tombol 'Lanjut' untuk menuju ruang pembayaran.
+    <br>
+    <br>
+    <button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
 
 {% endblock %}
 

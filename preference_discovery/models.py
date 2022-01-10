@@ -26,8 +26,15 @@ class Constants(BaseConstants):
     endowment = c(1000)
     multiplier = 2
 
-    with open('preference_discovery/Lottery.csv', encoding="utf-8") as file:
+    with open('preference_discovery/Lottery1.csv', encoding="utf-8") as file:
         prospects = pd.read_csv(file)
+
+    with open('preference_discovery/Lottery2.csv', encoding="utf-8") as file:
+        prospects = pd.read_csv(file)
+
+    with open('preference_discovery/Lottery3.csv', encoding="utf-8") as file:
+        prospects = pd.read_csv(file)
+
 
 class Subsession(BaseSubsession):
     pass

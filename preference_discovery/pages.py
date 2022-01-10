@@ -145,13 +145,6 @@ class No5Result(Page):
             'payoff_thisround': self.player.payoff_thisround,
         }
 
-
-class No6EndQuestionnaire(Page):
-
-    def is_displayed(self):
-        return self.round_number == self.session.config['rounds']
-
-
 class No6EndResult(Page):
 
     def is_displayed(self):
@@ -162,6 +155,22 @@ class No6EndResult(Page):
             'player_payoff': self.player.payoff
         }
 
+class Ronde2 (Page):
+
+    def is_displayed(self):
+        return self.round_number <= self.session.config['rounds']
+
+    def before_next_page(self, **kwargs):
+        return {self.player.set_player_param()}
+
+    def vars_for_template(self):
+        return {
+            'training': self.round_number <= self.session.config["training_rounds"],
+            'round': self.round_number - self.session.config["training_rounds"],
+        }
+
+
+
 page_sequence = [No1Introduction,
                  No2Instructions1,
                  No2Instructions2,
@@ -171,5 +180,6 @@ page_sequence = [No1Introduction,
                  No3Start,
                  No4Purchase,
                  No5Result,
-                 No6EndQuestionnaire,
-                 No6EndResult]
+                 No6EndResult,
+                 Ronde2
+                 ]

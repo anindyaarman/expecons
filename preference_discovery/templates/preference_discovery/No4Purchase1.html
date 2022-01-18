@@ -1,0 +1,77 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    {% if training %}
+    Ronde latihan ke-{{training_round}}
+    {% else %}
+    Ronde ke-{{round}}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    Anda memiliki {{endowment}} token yang dapat Anda alokasikan untuk 5 alternatif di bawah ini. Anda bebas mengalokasikan berapapun token yang
+Anda miliki. Anda tidak akan mendapatkan poin dari token yang tidak Anda alokasikan.
+    <br>
+    <br>
+    <style type="text/css">
+    .tg  {border-collapse:collapse;border-spacing:0;margin-left:auto;margin-right:auto;}
+    .tg td{border-color:black;border-style:solid;border-width:1px;font-size:14px;
+      overflow:hidden;padding:10px 19px;word-break:normal;}
+    .tg th{border-color:black;border-style:solid;border-width:1px;font-size:14px;
+      font-weight:normal;overflow:hidden;padding:10px 19px;word-break:normal;}
+    .tg .tg-wo29{border-color:#c0c0c0;text-align:left;vertical-align:top}
+    </style>
+    <table class="tg">
+    <thead>
+      <tr>
+        <th class="tg-wo29"><span style="font-weight:bold">Alternatif 1:  </span> <br>     {% if prob_A_1 == 1 %}<br>     Mendapat {{gain_A_1}} dengan pasti <br>     {% elif prob_B_1 == 1 %}<br>     Mendapat {{gain_B_1}} dengan pasti <br>     {% else %}<br>     Mendapat {{gain_A_1}} dengan probabilitas {{prob_A_1}} <span style="font-style:italic">atau </span>Mendapat {{gain_B_1}} dengan probabilitas {{prob_B_1}}<br>     {% endif %}</th>
+        <th class="tg-wo29">Alokasi: {{ form.Lotere_A }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="tg-wo29"><span style="font-weight:bold">Alternatif 2:</span> <br>     {% if prob_A_2 == 1 %}<br>     Mendapat {{gain_A_2}} dengan pasti <br>     {% elif prob_B_2 == 1 %}<br>     Mendapat {{gain_B_2}} dengan pasti <br>     {% else %}<br>     Mendapat {{gain_A_2}} dengan probabilitas {{prob_A_2}} <span style="font-style:italic">atau </span>Mendapat {{gain_B_2}} dengan probabilitas {{prob_B_2}}<br>     {% endif %}</td>
+        <td class="tg-wo29">Alokasi: {{ form.Lotere_B }}</td>
+      </tr>
+      <tr>
+        <td class="tg-wo29"><span style="font-weight:bold">Alternatif 3: </span><br>     {% if prob_A_3 == 1 %}<br>     Mendapat {{gain_A_3}} dengan pasti <br>     {% elif prob_B_3 == 1 %}<br>     Mendapat {{gain_B_3}} dengan pasti <br>     {% else %}<br>     Mendapat {{gain_A_3}} dengan probabilitas {{prob_A_3}} <span style="font-style:italic">atau </span>Mendapat {{gain_B_3}} dengan probabilitas {{prob_B_3}}<br>     {% endif %}</td>
+        <td class="tg-wo29">Alokasi: {{ form.Lotere_C }}</td>
+      </tr>
+      <tr>
+        <td class="tg-wo29"><span style="font-weight:bold">Alternatif 4:</span> <br>     {% if prob_A_4 == 1 %}<br>     Mendapat {{gain_A_4}} dengan pasti <br>     {% elif prob_B_4 == 1 %}<br>     Mendapat {{gain_B_4}} dengan pasti <br>     {% else %}<br>     Mendapat {{gain_A_4}} dengan probabilitas {{prob_A_4}} <span style="font-style:italic">atau </span>Mendapat {{gain_B_4}} dengan probabilitas {{prob_B_4}}<br>     {% endif %}</td>
+        <td class="tg-wo29">Alokasi: {{ form.Lotere_D }}</td>
+      </tr>
+      <tr>
+        <td class="tg-wo29"><span style="font-weight:bold">Alternatif 5:</span> <br>     {% if prob_A_5 == 1 %}<br>     Mendapat {{gain_A_5}} dengan pasti <br>     {% elif prob_B_5 == 1 %}<br>     Mendapat {{gain_B_5}} dengan pasti <br>     {% else %}<br>     Mendapat {{gain_A_5}} dengan probabilitas {{prob_A_5}} <span style="font-style:italic">atau </span>Mendapat {{gain_B_5}} dengan probabilitas {{prob_B_5}}<br>     {% endif %}</td>
+        <td class="tg-wo29">Alokasi: {{ form.Lotere_E }}</td>
+      </tr>
+    </tbody>
+    </table>
+    <br>
+    <p>Tekan tombol 'Lanjut' jika sudah yakin dengan pilihan Anda. Tekan tombol 'Reset' jika ingin mengubah pilihan Anda. </p>
+    <p>Anda dapat melanjutkan ke halaman berikutnya setelah <span id="countdown">{{pagehold_timer}}</span> detik. Sembari menunggu, pastikan
+    kembali keputusan Anda benar-benar sesuai dengan keinginan Anda.</p>
+    <div class="btn-group">
+      <button id="Lanjut" disabled="disabled" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
+      <button id="Reset" type="reset" class="otree-btn-next btn-outline-danger btn">Reset</button>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script type="text/javascript">
+    setTimeout(function() {
+        document.getElementById('Lanjut').disabled = false;
+    }, {{pagehold_timer_ths}});
+    let seconds = document.getElementById("countdown").textContent;
+    const countdown = setInterval(function () {
+        seconds--;
+        document.getElementById("countdown").textContent = seconds;
+        if (seconds <= 0) clearInterval(countdown);
+    }, 1000);
+    </script>
+
+{% endblock %}

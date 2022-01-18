@@ -18,21 +18,13 @@ doc = """
 Adaptation of Preference Discovery by Delaney, Jacobson and Moenig (2018) for risk preference discovery.
 """
 
-
 class Constants(BaseConstants):
     name_in_url = 'preference_discovery_v2'
     players_per_group = None
-    num_rounds = 20
+    num_rounds = 13
     endowment = c(1000)
     multiplier = 2
-
-    with open('preference_discovery/Lottery1.csv', encoding="utf-8") as file:
-        prospects = pd.read_csv(file)
-
     with open('preference_discovery/Lottery2.csv', encoding="utf-8") as file:
-        prospects = pd.read_csv(file)
-
-    with open('preference_discovery/Lottery3.csv', encoding="utf-8") as file:
         prospects = pd.read_csv(file)
 
 
@@ -106,8 +98,7 @@ class Player(BasePlayer):
 
     def set_payoff(self):
         self.payiff = self.payoff_thisround
-
-
+    
     endowment = models.IntegerField()
     player_payoff = models.IntegerField()
     payoff_thisround = models.IntegerField()

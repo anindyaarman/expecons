@@ -1,0 +1,31 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Registrasi
+{% endblock %}
+
+{% block content %}
+
+<form>
+    <div class="container">
+    <h1>Registrasi Di Sini</h1>
+    <hr>
+    <label for="email"><b>Enter Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" required>
+    <label for="pwd"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="pwd" required>
+    <label for="confirm"><b>Confirm Password</b></label>
+    <input type="password" placeholder="Confirm Password" name="confirm" required>
+    <hr>
+    <button type="submit" class="registerbtn"><strong>Register</strong></button>
+    </div>
+    </form>
+<br>
+<br>
+Tekan tombol 'Lanjut' jika Anda sudah siap.
+<br>
+<br>
+<button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
+
+{% endblock %}

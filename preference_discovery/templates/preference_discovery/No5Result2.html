@@ -1,0 +1,97 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Ronde ke-{{round}}
+{% endblock %}
+
+{% block content %}
+
+    Anda mendapatkan {{payoff_thisround}} poin di ronde ini. Berikut rincian lotere Anda:
+    <br>
+    <br>
+    <style type="text/css">
+    .tg  {border-collapse:collapse;border-spacing:0;margin-left:auto;margin-right:auto;}
+    .tg td{border-color:black;border-style:solid;border-width:1px;font-size:14px;
+      overflow:hidden;padding:10px 17px;word-break:normal;}
+    .tg th{border-color:black;border-style:solid;border-width:1px;font-size:14px;
+      font-weight:normal;overflow:hidden;padding:10px 17px;word-break:normal;}
+    .tg .tg-4n2o{border-color:#c0c0c0;font-weight:bold;text-align:center;vertical-align:top}
+    .tg .tg-fzdr{border-color:#c0c0c0;text-align:center;vertical-align:top}
+    </style>
+    <table class="tg" style="undefined;table-layout: fixed; width: 844px">
+    <colgroup>
+    <col style="width: 191px">
+    <col style="width: 110px">
+    <col style="width: 110px">
+    <col style="width: 92px">
+    <col style="width: 107px">
+    <col style="width: 124px">
+    <col style="width: 110px">
+    </colgroup>
+    <thead>
+      <tr>
+        <th class="tg-4n2o"></th>
+        <th class="tg-fzdr">Pay Off A</th>
+        <th class="tg-fzdr">Pay Off B</th>
+        <th class="tg-fzdr">Alokasi Anda</th>
+        <th class="tg-fzdr">Pay Off yang muncul</th>
+        <th class="tg-fzdr">Hitungan Poin</th>
+        <th class="tg-fzdr">Poin Perolehan </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="tg-4n2o">Alternatif 1:</td>
+        <td class="tg-fzdr">{{A1}}</td>
+        <td class="tg-fzdr">{{B1}}</td>
+        <td class="tg-fzdr">{{C1}}</td>
+        <td class="tg-fzdr">{% if C1 > 0 %}{{D1}}{% else %}-{% endif %}</td>
+        <td class="tg-fzdr">{% if D1 == 'A' %} {{C1}} * {{A1}} {% elif D1 == 'B' %} {{C1}} * {{B1}}{% endif %}</td>
+        <td class="tg-fzdr">{{E1}}</td>
+      </tr>
+      <tr>
+        <td class="tg-4n2o">Alternatif 2:</td>
+        <td class="tg-fzdr">{{A2}}</td>
+        <td class="tg-fzdr">{{B2}}</td>
+        <td class="tg-fzdr">{{C2}}</td>
+        <td class="tg-fzdr">{% if C2 > 0 %}{{D2}}{% else %}-{% endif %}</td>
+        <td class="tg-fzdr">{% if D2 == 'A' %} {{C2}} * {{A2}} {% elif D2 == 'B' %} {{C2}} * {{B2}}{% endif %}</td>
+        <td class="tg-fzdr">{{E2}}</td>
+      </tr>
+      <tr>
+        <td class="tg-4n2o">Alternatif 3:</td>
+        <td class="tg-fzdr">{{A3}}</td>
+        <td class="tg-fzdr">{{B3}}</td>
+        <td class="tg-fzdr">{{C3}}</td>
+        <td class="tg-fzdr">{% if C3 > 0 %}{{D3}}{% else %}-{% endif %}</td>
+        <td class="tg-fzdr">{% if D3 == 'A' %} {{C3}} * {{A3}} {% elif D3 == 'B' %} {{C3}} * {{B3}}{% endif %}</td>
+        <td class="tg-fzdr">{{E3}}</td>
+      </tr>
+      <tr>
+        <td class="tg-4n2o">Alternatif 4:</td>
+        <td class="tg-fzdr">{{A4}}</td>
+        <td class="tg-fzdr">{{B4}}</td>
+        <td class="tg-fzdr">{{C4}}</td>
+        <td class="tg-fzdr">{% if C4 > 0 %}{{D4}}{% else %}-{% endif %}</td>
+        <td class="tg-fzdr">{% if D4 == 'A' %} {{C4}} * {{A4}} {% elif D4 == 'B' %} {{C4}} * {{B4}}{% endif %}</td>
+        <td class="tg-fzdr">{{E4}}</td>
+      </tr>
+      <tr>
+        <td class="tg-4n2o">Alternatif 5:</td>
+        <td class="tg-fzdr">{{A5}}</td>
+        <td class="tg-fzdr">{{B5}}</td>
+        <td class="tg-fzdr">{{C5}}</td>
+        <td class="tg-fzdr">{% if C5 > 0 %}{{D5}}{% else %}-{% endif %}</td>
+        <td class="tg-fzdr">{% if D5 == 'A' %} {{C5}} * {{A5}} {% elif D5 == 'B' %} {{C5}} * {{B5}}{% endif %}</td>
+        <td class="tg-fzdr">{{E5}}</td>
+      </tr>
+    </tbody>
+    </table>
+    <br>
+    <br>
+    <p>Tekan tombol 'Lanjut' untuk melanjutkan ke tahap berikutnya.</p>
+    <br>
+    <button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
+{% endblock %}
+

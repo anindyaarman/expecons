@@ -1,6 +1,12 @@
 from ._builtin import Page
 
 
+class No1Registrasi(Page):
+
+    def is_displayed(self):
+        return self.round_number == 1
+
+
 class No1Introduction(Page):
 
     def is_displayed(self):
@@ -63,7 +69,7 @@ class No2Warning(Page):
         return self.round_number == self.session.config["training_rounds"] + 1
 
 
-class No3Start(Page):
+class No3Start1(Page):
 
     def is_displayed(self):
         return self.round_number <= self.session.config['rounds']
@@ -79,7 +85,7 @@ class No3Start(Page):
         }
 
 
-class No4Purchase(Page):
+class No4Purchase1(Page):
 
     def is_displayed(self):
         return self.round_number <= self.session.config['rounds']
@@ -126,7 +132,7 @@ class No4Purchase(Page):
         return {self.player.payoff_realizer()}
 
 
-class No5Result(Page):
+class No5Result1(Page):
 
     def is_displayed(self):
         return self.round_number <= self.session.config['rounds']
@@ -145,6 +151,13 @@ class No5Result(Page):
             'payoff_thisround': self.player.payoff_thisround,
         }
 
+
+class No6EndQuestionnaire(Page):
+
+    def is_displayed(self):
+        return self.round_number == self.session.config['rounds']
+
+
 class No6EndResult(Page):
 
     def is_displayed(self):
@@ -155,31 +168,15 @@ class No6EndResult(Page):
             'player_payoff': self.player.payoff
         }
 
-class Ronde2 (Page):
-
-    def is_displayed(self):
-        return self.round_number <= self.session.config['rounds']
-
-    def before_next_page(self, **kwargs):
-        return {self.player.set_player_param()}
-
-    def vars_for_template(self):
-        return {
-            'training': self.round_number <= self.session.config["training_rounds"],
-            'round': self.round_number - self.session.config["training_rounds"],
-        }
-
-
-
-page_sequence = [No1Introduction,
+page_sequence = [No1Registrasi,
+                 No1Introduction,
                  No2Instructions1,
                  No2Instructions2,
                  No2Instructions3,
                  No2Instructions4,
                  No2Warning,
-                 No3Start,
-                 No4Purchase,
-                 No5Result,
-                 No6EndResult,
-                 Ronde2
-                 ]
+                 No3Start1,
+                 No4Purchase1,
+                 No5Result1,
+                 No6EndQuestionnaire,
+                 No6EndResult]

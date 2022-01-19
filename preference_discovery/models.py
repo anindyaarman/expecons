@@ -24,7 +24,7 @@ class Constants(BaseConstants):
     num_rounds = 13
     endowment = c(1000)
     multiplier = 2
-    with open('preference_discovery/Lottery2.csv', encoding="utf-8") as file:
+    with open('preference_discovery/LotteryBlock2.csv', encoding="utf-8") as file:
         prospects = pd.read_csv(file)
 
 

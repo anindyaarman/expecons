@@ -1,12 +1,6 @@
 from ._builtin import Page
 
 
-class No1Registrasi(Page):
-
-    def is_displayed(self):
-        return self.round_number == 1
-
-
 class No1Introduction(Page):
 
     def is_displayed(self):
@@ -168,8 +162,7 @@ class No6EndResult(Page):
             'player_payoff': self.player.payoff
         }
 
-page_sequence = [No1Registrasi,
-                 No1Introduction,
+page_sequence = [No1Introduction,
                  No2Instructions1,
                  No2Instructions2,
                  No2Instructions3,

@@ -7,20 +7,27 @@
 
 {% block content %}
 
-<form>
-    <div class="container">
-    <h1>Registrasi Di Sini</h1>
-    <hr>
-    <label for="email"><b>Enter Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required>
-    <label for="pwd"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="pwd" required>
-    <label for="confirm"><b>Confirm Password</b></label>
-    <input type="password" placeholder="Confirm Password" name="confirm" required>
-    <hr>
-    <button type="submit" class="registerbtn"><strong>Register</strong></button>
-    </div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Login</title>
+</head>
+<body>
+    <form action="login.php" method="get">
+        <fieldset>
+        <legend>Login</legend>
+        <p>
+            <label>Email:</label>
+            <input type="text" name="email" placeholder="email..." required/>
+        </p>
+        <p>
+            <label>Password:</label>
+            <input type="password" name="password" placeholder="password..." required/>
+        </p>
+        </fieldset>
     </form>
+</body>
+</html>
 <br>
 <br>
 Tekan tombol 'Lanjut' jika Anda sudah siap.

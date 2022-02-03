@@ -1,11 +1,9 @@
 from ._builtin import Page
 
-
 class No1Introduction(Page):
 
     def is_displayed(self):
         return self.round_number == 1
-
 
 class No2Instructions1(Page):
 
@@ -17,7 +15,6 @@ class No2Instructions1(Page):
             'endowment': self.session.config["endowment"],
             'show_up_fee': int(self.session.config["participation_fee"]),
         }
-
 
 class No2Instructions2(Page):
 
@@ -32,7 +29,6 @@ class No2Instructions2(Page):
             'show_up_fee': int(self.session.config["participation_fee"]),
         }
 
-
 class No2Instructions3(Page):
 
     def is_displayed(self):
@@ -43,7 +39,6 @@ class No2Instructions3(Page):
             'endowment': self.session.config["endowment"],
             'show_up_fee': int(self.session.config["participation_fee"]),
         }
-
 
 class No2Instructions4(Page):
 
@@ -56,12 +51,10 @@ class No2Instructions4(Page):
             'show_up_fee': int(self.session.config["participation_fee"]),
         }
 
-
 class No2Warning(Page):
 
     def is_displayed(self):
         return self.round_number == self.session.config["training_rounds"] + 1
-
 
 class No3Start1(Page):
 
@@ -78,16 +71,15 @@ class No3Start1(Page):
             'round': self.round_number - self.session.config["training_rounds"],
         }
 
-
 class No4Purchase1(Page):
 
     def is_displayed(self):
-        return self.round_number <= self.session.config['rounds']
+       return self.round_number <= self.session.config['rounds']
 
     def vars_for_template(self):
-        p = self.participant.vars["displayed_prospects"]
+        p = self.participant.vars['displayed_prospects']
         return {
-            'p': self.participant.vars["displayed_prospects"],
+            'p': self.participant.vars['displayed_prospects'],
             'rand_index': self.participant.vars["random_indexes"],
             'payoff_vector': self.participant.vars["payoff_vector"],
             'endowment': self.session.config["endowment"],
@@ -124,15 +116,14 @@ class No4Purchase1(Page):
 
     def before_next_page(self, **kwargs):
         return {self.player.payoff_realizer()}
-
-
+        
 class No5Result1(Page):
 
     def is_displayed(self):
         return self.round_number <= self.session.config['rounds']
 
     def vars_for_template(self):
-        df = self.participant.vars["displayed_prospects"][["x1", "x2", "Allocation", "A_or_B", "payoff"]]
+        df = self.participant.vars['displayed_prospects'][["x1", "x2", "Allocation", "A_or_B", "payoff"]]
         return {
             'training': self.round_number <= self.session.config["training_rounds"],
             'training_round': self.round_number,
@@ -144,13 +135,11 @@ class No5Result1(Page):
             'A5': df.iloc[4, 0], 'B5': df.iloc[4, 1], 'C5': df.iloc[4, 2], 'D5': df.iloc[4, 3], 'E5': df.iloc[4, 4],
             'payoff_thisround': self.player.payoff_thisround,
         }
-
-
+        
 class No6EndQuestionnaire(Page):
 
     def is_displayed(self):
         return self.round_number == self.session.config['rounds']
-
 
 class No6EndResult(Page):
 

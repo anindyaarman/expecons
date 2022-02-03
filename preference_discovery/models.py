@@ -1,4 +1,5 @@
 from random import sample
+import random
 
 import numpy as np
 import pandas as pd
@@ -21,10 +22,10 @@ Adaptation of Preference Discovery by Delaney, Jacobson and Moenig (2018) for ri
 class Constants(BaseConstants):
     name_in_url = 'preference_discovery_v2'
     players_per_group = None
-    num_rounds = 13
+    num_rounds = 33
     endowment = c(1000)
     multiplier = 2
-    with open('preference_discovery/LotteryBlock2.csv', encoding="utf-8") as file:
+    with open('preference_discovery/LotteryALTER.csv', encoding="utf-8") as file:
         prospects = pd.read_csv(file)
 
 
@@ -58,8 +59,8 @@ class Player(BasePlayer):
         elif self.round_number == self.session.config["training_rounds"] + 1:
             self.participant.vars["prospect_table"] = Constants.prospects
         # randomizer
-        rand = sample(list(range(0, 20)), 4)
-        rand.append(20)
+        rand = sample(list(range(0, 60)), 4)
+        rand.append(61)
         self.participant.vars["random_indexes"] = rand
         self.participant.vars["displayed_lotteries"] = list(
             self.participant.vars["prospect_table"].loc[self.participant.vars["random_indexes"], "Index"])

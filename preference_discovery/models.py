@@ -23,9 +23,11 @@ class Constants(BaseConstants):
     name_in_url = 'preference_discovery_v2'
     players_per_group = None
     num_rounds = 33
+    num_training_rounds = 3
+    num_real_rounds_per_session = 10
     endowment = c(1000)
     multiplier = 2
-    with open('preference_discovery/LotteryALTER.csv', encoding="utf-8") as file:
+    with open('preference_discovery/Lottery.csv', encoding="utf-8") as file:
         prospects = pd.read_csv(file)
 
 
@@ -49,6 +51,16 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
 
+    def sequence_setup(self):
+        set1 = Constants.prospects[Constants.prospects['Game_Type'] == "Block_1"]
+        set2 = Constants.prospects[Constants.prospects['Game_Type'] == "Block_2"]
+        set3 = Constants.prospects[Constants.prospects['Game_Type'] == "Block_3"]
+        orgnl_sequence = [set1, set2, set3]
+        player_sequence = random.sample(orgnl_sequence, len(orgnl_sequence))
+        player_prospects = player_sequence[0].append(player_sequence[1], ignore_index=True).append(player_sequence[2],ignore_index=True)
+        player_prospects['rounds'] = [self.session.config["rounds"]] * 63
+        self.participant.vars["p_app_sequence"] = player_prospects  # Contains the dataframe for all parameters for all players
+    
     def set_player_param(self):
         # round settings
         self.training_round = 1 if self.round_number <= self.session.config["training_rounds"] else 0
@@ -59,8 +71,8 @@ class Player(BasePlayer):
         elif self.round_number == self.session.config["training_rounds"] + 1:
             self.participant.vars["prospect_table"] = Constants.prospects
         # randomizer
-        rand = sample(list(range(0, 60)), 4)
-        rand.append(61)
+        rand = sample(list(range(0, 20)), 4)
+        rand.append(20)
         self.participant.vars["random_indexes"] = rand
         self.participant.vars["displayed_lotteries"] = list(
             self.participant.vars["prospect_table"].loc[self.participant.vars["random_indexes"], "Index"])

@@ -36,8 +36,8 @@ SESSION_CONFIGS = [
         app_sequence=['preference_discovery'],
         endowment=3,
         training_rounds=3,
-        submit_delay=5,
-        rounds=13,
+        submit_delay=0,
+        rounds=33,
     ),
 ]
 
@@ -54,8 +54,9 @@ ROOMS = [
         name='econ101',
         display_name='Econ 101 class',
         participant_label_file='_rooms/econ101.txt',
+        use_secure_urls=True
     ),
-    dict(name='live_demo', display_name='Room for live demo (no participant labels)'),
+    dict(name='live_demo', display_name='Room for live demo'),
 ]
 
 ADMIN_USERNAME = 'admin'
